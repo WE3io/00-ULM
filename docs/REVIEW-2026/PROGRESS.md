@@ -41,7 +41,7 @@ gathered) → `🟢 verified` (claims re-checked against code/source, internally
 | A5 | DD by exception | risk register | 🟢 verified | 5 issues; deps clean, SSRF low — both verified |
 | B1 | Discover — problem space | JTBD + context | 🟢 verified | job=cut bills; carbon-first framing vs money-first user (6:1) |
 | B2 | Define — opportunity | OST + North Star + AARRR | 🟢 verified | whitespace=trust+locality+breadth; gaps: frame, prioritise, transact, revenue |
-| B3 | Develop — product eval | heuristics + honesty-of-data | 🔴 todo | journey/Solo-Focus loop |
+| B3 | Develop — product eval | heuristics + honesty-of-data | 🟢 verified | strong craft/honesty; 7 alignment findings; funnel unmeasured |
 | B4 | Deliver — prioritise | RICE + roadmap | 🔴 todo | |
 | C  | Recommendations & roadmap | synthesis | 🔴 todo | |
 | EXEC | Executive summary | synthesis | 🔴 todo | write last |
@@ -63,6 +63,10 @@ _Append `claim → evidence (file:line or URL)` as you go. This becomes the repo
 - B2: Nous.co AI bill assistant — "save £126, switch in a couple of clicks" (money-first, transacts) https://www.nous.co/blog/nous-launches-new-ai-assistant-to-make-sense-of-household-bills ; many free grant-eligibility checkers = installer lead-gen (Honely/GreatBritishEnergy/RetrofitPlanner/EnergySavingGenie/E.ON); MSE = editorial authority.
 - B2 tailwind: Warm Homes Plan Jan 2026 £15bn / 5M homes + ECO4 to Dec 2026 + BUS; 0% loans any household from Apr 2027 https://www.moneysavingexpert.com/news/2026/01/warm-homes-plan-martin/
 - B2 value-capture: all viable competitors monetise via transaction (switching/installer commission); Zero Zero informs only → no revenue model (key gap).
+- B3 UX (agent-mapped): 9 profile Qs `app/profile/ProfilePageClient.tsx:39-96`; 3 Qs/journey `lib/journeys.ts`; loop takeovers `lib/zone/loopQuestions.ts:28-209`; honest empty state `lib/zone/mechanicalTruth.ts:44`; voice/banned-jargon `lib/zone/warmAuditorCopy.ts:10-21`,`zoneVoice.ts`; Zai honesty `lib/brains/zai/boundaries.ts`; Director's Order motion contract `.agents/AGENTS.md`.
+- B3 reduced-motion: handled via useHydrationSafeReducedMotion across animated components (30 framer-motion files) — WCAG-positive.
+- B3 measurability: `/api/analytics` = generic fire-and-forget event capture to analytics_events; NOT funnel/£-actioned instrumented → North Star + B4 experiments unmeasurable today.
+- B3 trust risk: stamped £/kg grounded but Gemini 3-para prose interleaves specific claims (e.g. '45mm loose batts','£19-26k') — narrative hallucination surface, no eval guard (ties A5#1).
 
 ## Open questions
 _Things that need a human or a deeper dig. Resolve or carry forward each pass._
@@ -77,3 +81,4 @@ _One line per pass: date · section touched · what changed · status delta._
 - 2026-06-10 · pass 2 · A1–A4 written from architecture map (file:line cited); stack spine complete · A1–A4 🔴→🟢
 - 2026-06-10 · pass 3 · B1 written (JTBD, segments, pains, central money-vs-carbon tension) · B1 🔴→🟢
 - 2026-06-10 · pass 4 · B2 written (landscape, positioning quadrants, OST, North Star, AARRR; revenue gap) · B2 🔴→🟢
+- 2026-06-10 · pass 5 · B3 written (heuristic+honesty eval, 7 findings, opportunity-tree mapping) · B3 🔴→🟢

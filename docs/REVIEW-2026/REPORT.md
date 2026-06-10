@@ -272,9 +272,47 @@ natural first, given the tailwind) — which simultaneously creates the **missin
 These become the prioritised bets in B4.
 
 ## B3. Develop — evaluate the current product
-> _Framework: UX heuristic eval + honesty-of-data review + the journey/Solo-Focus loop
-> mapped onto the opportunity tree (what's covered, what's missing, what's friction)._
-> _TODO_
+
+The build quality is high and the craft is real. The issues below are almost all about
+**alignment to the money-first job**, not execution polish.
+
+### What's genuinely strong (keep and lead with)
+- **A rare, disciplined honesty system.** Empty states say `COMPUTING — HOME` rather than
+  faking a number (`lib/zone/mechanicalTruth.ts:44`); a *category contract* forces wrong-journey
+  copy back to "Computing…" (`USER-FLOW…md:80`); banned-jargon/AI-filler filters strip
+  greenwash and "as an ai" padding (`lib/zone/warmAuditorCopy.ts:10-21`, `zoneVoice.ts`); Zai
+  refuses to invent figures and will say *"i don't have enough information to be confident"*
+  (`lib/brains/zai/boundaries.ts`). This is the **trust moat from B1** made real in code.
+- **Low-friction, well-toned onboarding** — 9 single-question screens, sensible fields, good
+  mobile keyboard handling (`app/profile/ProfilePageClient.tsx:39-96`).
+- **Restrained, accessible motion** — linear tweens, and `prefers-reduced-motion` is honoured
+  via `useHydrationSafeReducedMotion()` across the animated components (30 files use
+  framer-motion; reduced-motion collapses to opacity-only). Good WCAG 2.2 instinct.
+- **Postcode grounding and a read-only "prove the maths" auditor (Zai)** — differentiated and
+  on-brand.
+
+### Where the product fights the job (heuristic + JTBD eval)
+| # | Finding | Evidence | Why it matters (vs the money job) |
+|---|---------|----------|-----------------------------------|
+| 1 | **Heavy question load before value.** 9 profile Qs, then up to **3×13 journey Qs** plus Solo-Focus *loop* takeovers ("rail instead of flying?"). | `lib/journeys.ts` (3/journey), `lib/zone/loopQuestions.ts:28-209` | Rivals deliver a number "in seconds" (Nous) / "60-second check" (grant tools). Front-loading profiling is an **activation tax** on a user who wants a fast £ answer. |
+| 2 | **Carbon is co-equal with money everywhere**, not subordinate. Hero shows £ **and** kg together; "carbon" is its own journey; several loop questions are carbon-led (plant-based meals, offsets). | Zone hero (£+kg stamps), `lib/journeys.ts` carbon journey, `loopQuestions.ts` | Re-states the **B1 6:1 money-vs-carbon mismatch** at the surface the user actually sees. The money "aha" is diluted. |
+| 3 | **13-lane wall (≤48 cells) + discovery tips + Rock rail = breadth over focus.** No single "biggest win for you." | `app/zone/page.tsx`, `lib/zone/gridOrder.ts` | Directly answers the wrong question. The user asks *"what do I do first?"*; the wall answers *"here are 13 areas."* For renters most lanes are inert. |
+| 4 | **Action is a link, not a transaction.** The Solo-Focus "BUY/CLAIM" opens an offer/source URL. | Solo-Focus action trinity (per UX walkthrough) | Confirms the **B2 transact/revenue gap** — value (and monetisation) leaks to gov.uk / installers at the exact moment of intent. |
+| 5 | **Brand motion precedes value on the activation path.** First run plays glitch → word-ticker → grid crystallize → hero ping before the £ lands; the "Director's Order" *freezes* this sequence as a contract. | `.agents/AGENTS.md:5-13`, `lib/motion-family.ts`, `lib/animations.ts` | Adds perceived latency to the one moment that decides activation. Restrained ≠ free; on mobile field conditions it competes with LCP/INP. |
+| 6 | **Hallucination surface inside the narrative.** Stamped £/kg are grounded, but the 3-paragraph Gemini prose interleaves *specific* claims ("45mm of loose batts", "£19–26k range") around them. | sample architect prose; `lib/agents/contentArchitect.ts` | The honesty moat protects the *stamps*, not the *story*. One invented detail in the prose erodes the very trust that is the differentiator — and there's **no eval guarding it** (ties to A5#1). |
+| 7 | **The funnel isn't measured.** `/api/analytics` is generic fire-and-forget page/event capture into `analytics_events`; there's no instrumentation for activation, £-actioned, or retention cohorts. | `app/api/analytics/route.ts` | The North Star (B2) and every B4 experiment are **currently unmeasurable** — the first thing to fix or no bet can be evaluated. |
+
+### Mapping onto the B2 opportunity tree
+- **Covered well:** trust/honesty, locality grounding, "prove the maths."
+- **Partial:** prioritisation (breadth instead of a single biggest win), retention (mechanics
+  exist but no money-fresh reason to return, and it's unmeasured).
+- **Missing:** money-first framing, a path to *action*, referral, revenue, and funnel telemetry.
+
+### Provisional B3 conclusion
+This is a **well-built product pointed slightly off-target**. The engineering and copy craft are
+assets; the honesty system is a genuine moat. The gap is strategic and consistent across B1–B3:
+**re-point from carbon-audit-breadth to money-action-focus, protect the trust moat with an eval,
+and instrument the funnel** so the re-pointing can be proven. These convert directly into B4.
 
 ## B4. Deliver — prioritise & sequence
 > _Framework: RICE prioritisation + sequenced roadmap._
