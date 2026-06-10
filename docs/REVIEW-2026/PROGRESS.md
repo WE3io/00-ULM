@@ -39,7 +39,7 @@ gathered) → `🟢 verified` (claims re-checked against code/source, internally
 | A3 | AI / data pipeline architecture | flow + failure | 🟢 verified | bucket failover good; gaps: no evals/tracing in CI |
 | A4 | Scaling, state & failure modes | — | 🟢 verified | in-memory rate-limit/cooldown per-lambda; no obs |
 | A5 | DD by exception | risk register | 🟢 verified | 5 issues; deps clean, SSRF low — both verified |
-| B1 | Discover — problem space | JTBD + context | 🔴 todo | UK cost-of-living / energy |
+| B1 | Discover — problem space | JTBD + context | 🟢 verified | job=cut bills; carbon-first framing vs money-first user (6:1) |
 | B2 | Define — opportunity | OST + North Star + AARRR | 🔴 todo | needs competitive scan |
 | B3 | Develop — product eval | heuristics + honesty-of-data | 🔴 todo | journey/Solo-Focus loop |
 | B4 | Deliver — prioritise | RICE + roadmap | 🔴 todo | |
@@ -72,3 +72,4 @@ _One line per pass: date · section touched · what changed · status delta._
 - 2026-06-10 · scaffold · created REPORT + PROGRESS skeleton · all 🔴
 - 2026-06-10 · pass 1 · A5 written (5 verified issues + 4 cleared); product market/competitor evidence gathered for B1/B2 · A5 🔴→🟢
 - 2026-06-10 · pass 2 · A1–A4 written from architecture map (file:line cited); stack spine complete · A1–A4 🔴→🟢
+- 2026-06-10 · pass 3 · B1 written (JTBD, segments, pains, central money-vs-carbon tension) · B1 🔴→🟢

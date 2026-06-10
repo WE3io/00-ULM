@@ -145,9 +145,62 @@ Only items that are *clearly* problematic are listed; each is verified, not infe
 # Part B — Product analysis (deep, Double Diamond)
 
 ## B1. Discover — the problem space
-> _Framework: Jobs-To-Be-Done + user/context map (UK cost-of-living / energy). Who is this
-> for, what job are they hiring it for, what is the real pain and its triggers?_
-> _TODO_
+
+### The core job (JTBD)
+> *When* my energy bills keep rising and I can't tell which money-saving advice is real,
+> *I want to* know the specific actions that will actually cut **my** bills for **my** home and
+> area, *so I can* feel in control and act — without wading through tariffs, grants and greenwash.
+
+The functional job is **"cut my cost of living / bills."** The emotional job is **"feel in
+control and not ripped off."** The social job ("be a responsible, savvy householder") is real
+but secondary. This ordering is the single most important strategic fact about the space.
+
+### The evidence — and the central tension
+UK consumers rank **reducing the cost of living as the #1 priority (28% top, 68% top-three)**
+and **reducing energy bills in the top three for 43%**, while **"tackling climate change" is
+top-three for only 11% and "net zero" for 4%** ([House of Commons Library](https://commonslibrary.parliament.uk/research-briefings/cbp-10505/),
+[JRF, 2026](https://www.jrf.org.uk/cost-of-living/addressing-the-2026-energy-price-crisis)).
+Money beats carbon by roughly **6:1** as a motivator.
+
+**Zero Zero is architected carbon-first.** Its ground truth is the *12,000 kWh ≈ 1 tonne CO₂e*
+baseline, its persona is a lowercase **"auditor,"** and "carbon" is a first-class journey
+(`docs/HANDBOOK.md`, `.agents/AGENTS.md:30-34`). The honesty engine ("mechanical truth," no
+fake numbers) is genuinely differentiated — but if the *headline payoff* a user feels is
+carbon/audit rather than **£ in my pocket**, the product is speaking its second language to a
+money-first audience. **This job-framing question is the thread that runs through B2–B4.**
+
+### Triggers (when the job arises)
+- **Price-cap shocks** — Apr 2026 cap £1,641, then **+13% to £1,862 in July 2026**; volatility
+  is itself the recurring trigger ([Solar4Good, 2026](https://solar4good.co.uk/blogs/average-energy-bills-uk-2026/)).
+- **Bill arrival / annual statement**, a cold snap, moving home, or a grant headline (BUS,
+  ECO4, Warm Home Discount £150).
+
+### User segments (who has the job, ranked by £-leverage the product can serve)
+1. **Cost-pressured homeowners** — the sweet spot. They can act on the highest-£ levers Zero
+   Zero covers (insulation, heat pumps + **grants**, solar, tariff). Postcode → council →
+   grant eligibility is exactly their pain.
+2. **Engaged switchers** (already on Octopus/smart tariffs) — want optimisation and the next
+   marginal action; lower upside, higher savviness.
+3. **Renters / flat-dwellers** — limited fabric control; only the tariff/behaviour/tech/water
+   levers apply. Risk: the 13-journey wall shows them mostly actions they *can't* take.
+4. **Fuel-poor households** — highest need, lowest ability to pay/act; a moral target but a
+   hard commercial one (they need grants and protection, not a savings dashboard).
+
+### Pains in the space, and how well the concept targets them
+| Pain | Zero Zero's answer | Fit |
+|------|--------------------|-----|
+| Advice is **fragmented** (tariffs *vs* grants *vs* behaviour, across many sites) | One postcode-driven wall spanning 13 domains | **Strong** — aggregation is a real wedge |
+| **Distrust** of savings claims / greenwash | "Mechanical truth": honest `COMPUTING`/empty over fake £ | **Strong & rare** — a credible trust moat |
+| Advice is **generic**, ignores my home/area | Postcode → council, grid intensity, local grants | **Strong** — the core differentiator |
+| I don't know **what to do first** | Journey cards + Solo-Focus recommendation + Rock habits | Medium — depends on prioritisation quality (B3) |
+| I want to **actually do it** (switch, apply, install) | CTA links to trusted sources | **Weak/unverified** — informs more than it transacts (see B2/B3) |
+
+### Provisional B1 conclusion
+The problem is real, large, recurring, and under-served on **trust + locality** — Zero Zero's
+two genuine strengths. The **strategic risk is motivational alignment**: a money-first audience
+met with a carbon-auditor frame, and an *inform*-first product in a space where the value often
+lands at the point of *action* (switch/apply/install). Both are testable and fixable; they
+define the opportunity in B2.
 
 ## B2. Define — the opportunity
 > _Framework: competitive landscape + Opportunity Solution Tree anchored to a North Star
