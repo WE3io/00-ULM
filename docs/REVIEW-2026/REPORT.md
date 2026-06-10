@@ -203,9 +203,73 @@ lands at the point of *action* (switch/apply/install). Both are testable and fix
 define the opportunity in B2.
 
 ## B2. Define — the opportunity
-> _Framework: competitive landscape + Opportunity Solution Tree anchored to a North Star
-> metric + AARRR funnel. Where is the value and against what alternatives?_
-> _TODO_
+
+### Competitive landscape
+| Player | What it does | Frame | Value capture |
+|--------|--------------|-------|---------------|
+| **Nous.co** | AI assistant reads household bills, says "you can save £126", **switches in a couple of clicks** | Money-first | Switching commission |
+| **Snugg** | Postcode → EPC/EST property model → retrofit plan → **grants → installer** | Carbon/retrofit | Installer lead-gen |
+| **Grant checkers** (Honely, GreatBritishEnergy, RetrofitPlanner, EnergySavingGenie, E.ON…) | Free 60-sec grant eligibility check | Money-first | Installer/ECO lead-gen |
+| **MoneySavingExpert** | Editorial authority, grants guides, Martin Lewis trust | Money-first | Affiliate/editorial |
+| **Octopus / Loop** | Smart tariffs + hardware energy monitors (monitors cut use 10–15%) | Money + carbon | Supplier / hardware |
+| **Generic AI** (ChatGPT/SearchGPT) | "Cut my energy use" plans on demand | Neutral | None (free) |
+
+Sources: [Nous](https://www.nous.co/blog/nous-launches-new-ai-assistant-to-make-sense-of-household-bills) ·
+[Snugg](https://www.snugg.com/) · [GreatBritishEnergy checker](https://greatbritishenergy.com/eligibility-checker/) ·
+[MSE grants](https://www.moneysavingexpert.com/family/housing-and-energy-grants/).
+
+**Market tailwind:** the **Warm Homes Plan (Jan 2026, £15bn, 5M homes)** plus ECO4 (to Dec 2026)
+and BUS — and **0% loans for any household from April 2027** — make grant/scheme navigation a
+fast-growing, high-intent need ([MSE, Jan 2026](https://www.moneysavingexpert.com/news/2026/01/warm-homes-plan-martin/)).
+
+### Positioning — where Zero Zero sits
+Plot the market on two axes — **Money-first ↔ Carbon-first** and **Inform ↔ Transact**:
+
+- The **money + transact** quadrant is crowded and *funded* (Nous, grant checkers, Snugg).
+- Zero Zero sits in **carbon-first + inform** — the quadrant with the **weakest commercial
+  pull**, and there it competes with *free generic AI*.
+
+**But its genuine whitespace is orthogonal to both axes: postcode-grounded, trust-first
+("mechanical truth"), cross-domain breadth.** No competitor combines honest, locality-grounded
+advice across all 13 domains; the checkers are single-purpose lead-gen and MSE is generic
+editorial. That breadth + honesty is the defensible wedge — *if* it is re-pointed at the money
+job and given a path to action.
+
+### Opportunity Solution Tree
+**Desired outcome (North Star candidate): _verified £/year of savings a household actually
+actions_** — a value-realised metric, not vanity engagement, consistent with the product's
+honesty ethos.
+
+| Unmet need (from B1) | Covered today? | Opportunity |
+|----------------------|----------------|-------------|
+| "I don't trust savings numbers" | ✅ mechanical truth | **Lead with it** as the brand promise |
+| "Advice ignores my home/area" | ✅ postcode grounding | Extend to EPC/Home-Analytics depth (Snugg parity) |
+| "Show me money, not carbon" | ⚠️ carbon-first frame | **Re-point hero/copy to £; carbon as supporting** |
+| "What do I do *first*?" | ⚠️ partial (13-card wall) | **Single prioritised "biggest win for you" action** |
+| "Help me *actually do it*" | ❌ inform-only | **Facilitate the highest-£ action** (grants/switch) → also the revenue path |
+| "Why come back?" | ⚠️ habits/Hermes | Trigger-based re-engagement on cap/grant changes |
+
+### North Star + AARRR funnel (current-state read)
+- **North Star:** *£ saved actioned per activated household / quarter.* Counter-metric: keep the
+  "mechanical truth" honesty rate at 100% (no inflated £).
+- **Acquisition** — postcode entry is low-friction, but **no obvious top-of-funnel hook**; the
+  high-intent SEO surface (grant eligibility) is owned by competitors. *Gap.*
+- **Activation** — the "aha" should be a believable, **£-led** first personalised result; today
+  the cascade is **carbon/auditor-framed and motion-heavy** (B3), risking a diluted money aha.
+- **Retention** — strong *natural* triggers exist (cap volatility, Warm Homes Plan changes) and
+  some mechanics (Rock habits 2/day, Hermes cross-journey memory) — but retention needs a
+  *reason to return* (new savings surfaced), which depends on fresh, money-relevant content.
+- **Referral** — none evident. *Gap.*
+- **Revenue** — **none evident.** Every viable competitor captures value at the point of
+  transaction; an inform-only product has no model. **This is the defining commercial question.**
+
+### Provisional B2 conclusion
+The opportunity is real and timely (Warm Homes Plan tailwind) and Zero Zero owns a rare
+**trust + locality + breadth** position. To convert that into a business it must (1) **re-point
+the frame from carbon to money**, (2) **collapse the 13-card wall into a single prioritised
+"biggest win,"** and (3) **add one path to action** on a high-£ lever (grants facilitation is the
+natural first, given the tailwind) — which simultaneously creates the **missing revenue model**.
+These become the prioritised bets in B4.
 
 ## B3. Develop — evaluate the current product
 > _Framework: UX heuristic eval + honesty-of-data review + the journey/Solo-Focus loop
