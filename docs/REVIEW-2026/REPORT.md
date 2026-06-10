@@ -9,7 +9,12 @@
 **How to read this:** Executive summary first (decision-grade, non-technical). Part A is the
 **stack/architecture** read (~30%, architectural + due-diligence-by-exception). Part B is the
 **deep product analysis** (~70%) using a Double Diamond — Discover (JTBD) → Define (opportunity)
-→ Develop (evaluation) → Deliver (prioritised roadmap). Part C synthesises both into a call.
+→ Develop (evaluation) → Deliver (prioritised roadmap). **Part B′** integrates domain-expert
+operator feedback (the project-workspace reframe §B5 + a UX findings register §B6). Part C
+synthesises everything into a call.
+
+**v1.1 (2026-06-10):** integrated operator review — added §B5/§B6; revised the North Star, the
+executive thesis, and the roadmap (new Phase 1.5 + project-workspace Phase 2).
 
 ---
 
@@ -40,19 +45,31 @@ revenue model**. Its real, defensible whitespace is **trust + locality + breadth
 combines honest, postcode-grounded advice across all the levers, and the macro timing (£15bn Warm
 Homes Plan, price-cap volatility) is a strong tailwind.
 
-**The five moves that matter (in order):**
+**The sharper thesis (from operator review, §B5).** Acting on this advice is **weeks-to-months of
+real work**, so the durable value is **tracking that long-running work** — Zero Zero should become
+a **functional home-efficiency *project workspace***, not a one-shot advice poster. That single
+reframe resolves the retention *and* revenue gaps more durably than a one-off referral and turns
+returning users into a data moat.
+
+**The moves that matter (in order):**
 1. **Instrument the funnel and add an eval that guards the honesty moat** — nothing else can be
    proven or safely changed without this (also fixes durable rate-limiting + observability).
 2. **Re-point the frame from carbon to money** — £-first hero/copy; the single highest-confidence
    change.
 3. **Show one "biggest win for you," fast** — replace breadth-overload with a prioritised next
    action and a quicker time-to-value.
-4. **Add a path to action with revenue** — grants facilitation first, on the Warm Homes tailwind.
-5. **Pay down the test/maintainability debt** continuously.
+4. **Make it a tool, not a poster** (§B6) — persistent nav/breadcrumbs and a calmer "working"
+   visual mode for surfaces users dwell in; plus quick wins (buy-link logos + page summaries, the
+   liked-cards bug, copy nits).
+5. **Build the project workspace** (§B5) — projects that persist tasks, advisor threads, and data;
+   validity-decay + progress; **bill ingestion (PDF/photo → LLM, GDPR-handled)**; grants
+   facilitation as the first project type and the revenue model.
+6. **Pay down the test/maintainability debt** continuously.
 
-**Bottom line.** Real asset, real moat, favourable timing — held back by a carbon-first, inform-
-only stance and an unmeasured, lightly-tested operating base. **Pivot to a money-first, action-
-first, instrumented product and the foundation is strong enough to build on.**
+**Bottom line.** Real asset, real moat, favourable timing — held back by a carbon-first,
+inform-only, *poster-shaped* stance on an unmeasured, lightly-tested base. **Pivot to a money-first,
+action-first, persistent project workspace — built like a tool, not a presentation — and the
+foundation is strong enough to build on.**
 
 *(Detail and evidence: Part A — stack §A1–A5; Part B — product §B1–B4; synthesis §C. Working
 notes and citations in [`PROGRESS.md`](./PROGRESS.md).)*
@@ -293,7 +310,9 @@ honesty ethos.
 
 ### North Star + AARRR funnel (current-state read)
 - **North Star:** *£ saved actioned per activated household / quarter.* Counter-metric: keep the
-  "mechanical truth" honesty rate at 100% (no inflated £).
+  "mechanical truth" honesty rate at 100% (no inflated £). **→ Revised in §B5** following operator
+  review to *£ realised across active **projects*** (lifecycle), reflecting that the work is
+  long-running, not a single action.
 - **Acquisition** — postcode entry is low-friction, but **no obvious top-of-funnel hook**; the
   high-intent SEO surface (grant eligibility) is owned by competitors. *Gap.*
 - **Activation** — the "aha" should be a believable, **£-led** first personalised result; today
@@ -390,14 +409,83 @@ bet cheap over time.
 - **Phase 1 — Re-point to the job (weeks 2–6, overlapping).** Money-first reframe; value-before-
   brand on first run; surface the single biggest win; cut time-to-value via progressive profiling.
   Measure activation lift against Phase 0 baseline.
-- **Phase 2 — Capture value (weeks 6–14).** Build one path to action on the highest-£ lever —
-  **grants facilitation** is the recommended first (tailwind + trust fit), establishing the
-  revenue model. A/B against inform-only.
+- **Phase 1.5 — Make it a tool, not a poster (weeks 4–8, from operator review §B6).** Persistent
+  global **navigation + breadcrumbs** (#1); a lower-intensity **"working/dashboard" visual mode**
+  for dwell surfaces (#2); and the quick wins — buy-link logos + scraped page summary (#6), fix
+  the **liked-cards bug** (#7), audit-trail tooltip (#9), employment copy (#10). Low-cost,
+  high-trust, and prerequisites for time-on-task.
+- **Phase 2 — Build the project workspace (the core bet, weeks 6–16; §B5).** A `projects` model
+  where decisions become tracked, long-running projects; **Zai threads persist** into them (#3);
+  **data-validity decay + refresh + progress infographic** (#4); **bill ingestion** via PDF/photo
+  → LLM with **GDPR handled properly** (#5). **Grants facilitation becomes the first project
+  type** inside the workspace (Warm Homes tailwind), establishing the revenue model. A/B against
+  inform-only. *This supersedes the original standalone "grants referral" framing.*
 - **Phase 3 — Pay down foundation (continuous).** Smoke/integration test coverage; Zod pass;
   decompose `lib/zone`/`AppContext`; remove `ignoreBuildErrors`; evaluate Turbopack + React 19;
   rationalise the 61-script tooling layer.
 
 ---
+
+# Part B′ — Operator review (domain-expert feedback, integrated)
+
+> Source: review feedback from an operator with prior Uswitch/comparison-sector experience.
+> This section **supersedes parts of the B1–B4 framing where noted** — the core insight is a
+> sharper thesis than the original "inform → transact" gap.
+
+## B5. The reframe: from advice *poster* to project *workspace*
+
+**The insight.** Acting on anything Zero Zero surfaces (insulation, heat pump, solar, switching,
+grants) is **weeks-to-months of real-world work**, not a one-click action. Therefore the durable
+value is **not the advice, and not even the transaction — it is the persistent tracking of the
+long-running work**. The product should behave like a **functional tool/workspace**, not a
+"design presentation."
+
+This is a sharper version of B2/B3/B4. The original review identified that value leaks because the
+product only *informs*; the operator view goes further: even *transacting* is a single moment,
+whereas the household's job spans months. **The defensible product is a home-efficiency project
+workspace** where decisions become **projects** that hold their own interactions, data, and state
+over time. This also resolves the B2 retention and revenue gaps more durably than a one-shot
+grant referral: a workspace people return to is both the retention engine and the data moat.
+
+**Revised North Star (supersedes the B2 candidate):** *£ realised across active household
+projects* (lifecycle value), with **active projects progressed per quarter** as the leading
+indicator — not one-shot "£ actioned." Honesty rate stays the 100% counter-metric.
+
+### What the reframe requires (new first-class capabilities)
+| Capability | Why (operator rationale) | Notes / dependencies |
+|------------|--------------------------|----------------------|
+| **Project space** — a decision becomes a tracked project holding tasks, interactions, documents, status over time | The work is long-running; today nothing persists past a card close | Needs a `projects` data model + task state; this is the core build, not a feature |
+| **Advisor threading into projects** — Zai conversations attach to a project and persist | "The advisor loses conversational thread and nothing gets progressed into a longer-term space" | Zai is currently read-only/stateless per surface (`lib/brains/zai/boundaries.ts`); needs conversation persistence keyed to a project |
+| **Data-validity decay + refresh** — numbers age out; returning users are prompted to re-confirm, then shown a **progress infographic** | Long projects mean stale inputs; a 6-month return should refresh and *show progress* | Strong retention trigger; pairs with price-cap volatility re-engagement (B2) |
+| **Bill ingestion** — upload a PDF bill or a **photo of tariff/usage**, LLM extracts the figures | Removes the estimate guesswork; the highest-confidence path to a believable £ | **GDPR is now first-class** (lawful basis, explicit consent, retention/erasure, DPIA, PII encryption) — ties to the A-track security gaps; pairs with the "make this accurate" action (B6) |
+
+### Implication for the roadmap
+The "path to action + revenue" bet in B4 (Phase 2) should be **reframed as the project
+workspace**, with grants facilitation as the *first project type* inside it rather than a
+standalone referral. The workspace is the container that makes every transaction, and the
+returning-user loop, valuable.
+
+## B6. UX findings register (operator-reported, verified where cheap)
+
+Type: **STR**ategic · **FEAT**ure · **BUG** · **COPY** · **IA**/navigation · **VIS**ual.
+
+| # | Finding (operator) | Type | Evidence / status | Recommendation | Priority |
+|---|--------------------|------|-------------------|----------------|----------|
+| 1 | **Discoverability is poor** — no nav bar / breadcrumbs; movement relies on back/close buttons. "Feels like a tool, so stability matters." | IA | Validated; navigation is modal/cascade-driven (`SoloFocusOverlay`, Director's Order cascade) | Add persistent global nav + breadcrumbs / a stable shell; treat it as a tool, not a linear promo flow | **High** |
+| 2 | **Visual system fatigues over sustained use** — all-caps, font choice, colour intensity, drop shadows. "Great for a poster, not a dashboard." | VIS | Extends B3-5 from *motion* to the whole visual language | Introduce a **lower-intensity "working/dashboard" mode** for surfaces users dwell in (sentence-case body, calmer palette, no drop-shadow); keep the punchy look for marketing/first-run | **High** |
+| 3 | **Advisor loses the thread** — Zai chat doesn't progress into a persistent project space | STR | `lib/brains/zai/boundaries.ts` (read-only/stateless per surface) | Persist Zai threads against a project (see B5) | **High** |
+| 4 | **No data decay / progress view** — returning users aren't asked to refresh; no progress infographic | FEAT | Not present | Add validity decay + refresh prompt + progress visualisation (see B5) | **Med-High** |
+| 5 | **Bill ingestion** — let users upload a PDF/photo of a bill; LLM crunches tariff/usage | FEAT | Not present; pipeline already runs Gemini | Add upload → LLM extract; **handle GDPR properly** (consent, retention, DPIA, encryption) | **Med-High** |
+| 6 | **Buy links lack context** — no logos, no visibility of the destination | FEAT | Solo-Focus action opens an offer/source URL with no preview | Add provider **logos** + a **scraped summary of the linked page** (you already scrape — reuse it) | **Med** (good quick win) |
+| 7 | **Liked cards didn't work** | BUG | Reproduced concern; likely cause = **like state fragmented across 4 stores** (DB `/api/likes`, zai likes, guest likes, `likeCardSnapshots`) reconstructed via `buildZoneViewModel` on the likes page | Consolidate like state to one source of truth; add a regression test | **Med** (real defect) |
+| 8 | **"Make this accurate" on spend estimate** | FEAT | Estimate has no correction affordance | Add a "make this accurate" CTA → bill upload (#5) or manual entry | **Med** |
+| 9 | **Audit trail needs a tooltip** | FEAT | No explanatory affordance | Add a tooltip explaining what the audit trail is/shows | **Low** (quick win) |
+| 10 | **Employment copy "NOT WORK" is clumsy** | COPY | Confirmed: label `NOT WORK`, value `UNEMPLOYED` (`app/profile/ProfilePageClient.tsx:79`) | Use clearer options — e.g. *Employed / Self-employed / Not working / Retired / Student* + *Prefer not to say* for edge cases | **Low** (quick win) |
+
+**Note on visual design (balanced):** the punchy aesthetic is a genuine strength for acquisition
+and brand — the recommendation is **not** to discard it, but to recognise that a tool users spend
+real time in needs a calmer *working mode*. This reinforces, with operator evidence, the B3-5
+"value-before-brand" finding and the B3-1 time-to-value concern.
 
 # Part C — Recommendations & roadmap
 

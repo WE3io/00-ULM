@@ -83,3 +83,9 @@ _One line per pass: date · section touched · what changed · status delta._
 - 2026-06-10 · pass 4 · B2 written (landscape, positioning quadrants, OST, North Star, AARRR; revenue gap) · B2 🔴→🟢
 - 2026-06-10 · pass 5 · B3 written (heuristic+honesty eval, 7 findings, opportunity-tree mapping) · B3 🔴→🟢
 - 2026-06-10 · pass 6 · B4 (RICE+roadmap), C (synthesis), EXEC written; header→COMPLETE; appendix filled; DoD all ticked; B3#1 accuracy fix · B4/C/EXEC 🔴→🟢 · REPORT v1 complete
+
+## Operator review integration (v1.1)
+- B5 project-workspace reframe: durable value = tracking long-running work, not one-shot advice (operator/Uswitch input). Revised North Star → £ realised across active projects.
+- B6 UX register: nav/breadcrumbs (IA, High); visual fatigue → "working mode" (VIS, High); Zai thread persistence (High); data decay+progress (Med-High); bill ingestion PDF/photo→LLM + GDPR (Med-High); buy-link logos+page summary (Med); liked-cards BUG — like state fragmented across 4 stores DB/zai/guest/snapshot (Med); make-this-accurate (Med); audit-trail tooltip (Low); employment "NOT WORK"/UNEMPLOYED copy `app/profile/ProfilePageClient.tsx:79` (Low).
+- Threaded into EXEC (6 moves), B2 North Star (revised pointer), B4 roadmap (new Phase 1.5 tool-not-poster + Phase 2 project workspace; grants = first project type).
+- 2026-06-10 · pass 7 · integrated operator feedback → §B5/§B6 + revised EXEC/B2/B4; verified employment copy + likes fragmentation · REPORT v1→v1.1
