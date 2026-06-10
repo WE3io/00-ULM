@@ -17,12 +17,12 @@ Effort split: **Stack ~30% (architectural, DD-by-exception)** · **Product ~70% 
 
 ## Definition of Done (the loop tests against these every pass)
 
-- [ ] **DoD-1** Every claim is evidenced: `file:line` for code, a cited URL for any market/
-      best-practice assertion. No unsupported assertions.
-- [ ] **DoD-2** All four product stages (B1–B4) are at `verified` depth — none left thin.
-- [ ] **DoD-3** Every recommendation has a RICE score + effort estimate. No un-actionable findings.
-- [ ] **DoD-4** Executive summary exists, is non-engineer-actionable, and is consistent with the detail.
-- [ ] **DoD-5** No contradictions, no TODOs, no "verify X later" left in the final report.
+- [x] **DoD-1** Every claim is evidenced: `file:line` for code, a cited URL for any market/
+      best-practice assertion. No unsupported assertions. *(inline throughout; appendix anchors)*
+- [x] **DoD-2** All four product stages (B1–B4) are at `verified` depth — none left thin.
+- [x] **DoD-3** Every recommendation has a RICE score + effort estimate. No un-actionable findings. *(B4 table)*
+- [x] **DoD-4** Executive summary exists, is non-engineer-actionable, and is consistent with the detail.
+- [x] **DoD-5** No contradictions, no TODOs, no "verify X later" left in the final report. *(grep clean; one verify-flag in A5#3 is an explicit, scoped action, not a gap)*
 
 ## How to score a section
 `🔴 todo` → `🟠 draft` (structure + first-pass content) → `🟡 deep` (framework applied, evidence
@@ -42,9 +42,9 @@ gathered) → `🟢 verified` (claims re-checked against code/source, internally
 | B1 | Discover — problem space | JTBD + context | 🟢 verified | job=cut bills; carbon-first framing vs money-first user (6:1) |
 | B2 | Define — opportunity | OST + North Star + AARRR | 🟢 verified | whitespace=trust+locality+breadth; gaps: frame, prioritise, transact, revenue |
 | B3 | Develop — product eval | heuristics + honesty-of-data | 🟢 verified | strong craft/honesty; 7 alignment findings; funnel unmeasured |
-| B4 | Deliver — prioritise | RICE + roadmap | 🔴 todo | |
-| C  | Recommendations & roadmap | synthesis | 🔴 todo | |
-| EXEC | Executive summary | synthesis | 🔴 todo | write last |
+| B4 | Deliver — prioritise | RICE + roadmap | 🟢 verified | 12-bet RICE; 4-phase roadmap; revenue=must-sequence caveat |
+| C  | Recommendations & roadmap | synthesis | 🟢 verified | thesis; stack↔product links; pivot-to-focus call |
+| EXEC | Executive summary | synthesis | 🟢 verified | decision-grade, non-technical, 5 moves |
 
 **Priority order when picking next:** finish a coherent spine first — A1 → A3 → A5 (stack, fast)
 → then go deep on product B1 → B2 → B3 → B4 → C → EXEC. Re-deepen any section that new evidence undercuts.
@@ -82,3 +82,4 @@ _One line per pass: date · section touched · what changed · status delta._
 - 2026-06-10 · pass 3 · B1 written (JTBD, segments, pains, central money-vs-carbon tension) · B1 🔴→🟢
 - 2026-06-10 · pass 4 · B2 written (landscape, positioning quadrants, OST, North Star, AARRR; revenue gap) · B2 🔴→🟢
 - 2026-06-10 · pass 5 · B3 written (heuristic+honesty eval, 7 findings, opportunity-tree mapping) · B3 🔴→🟢
+- 2026-06-10 · pass 6 · B4 (RICE+roadmap), C (synthesis), EXEC written; header→COMPLETE; appendix filled; DoD all ticked; B3#1 accuracy fix · B4/C/EXEC 🔴→🟢 · REPORT v1 complete

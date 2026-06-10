@@ -1,19 +1,61 @@
 # Zero Zero (00-ULM) — Comprehensive Review
 
-> **Status: IN PROGRESS (loop-driven).** This report is built iteratively. Source of
-> truth for what's done and what's next is [`PROGRESS.md`](./PROGRESS.md). Do not treat
-> any section marked 🟡/🔴 in PROGRESS as final.
+> **Status: COMPLETE (v1) — all sections verified.** Built iteratively (loop-driven); working
+> notes and the full evidence/citation log are in [`PROGRESS.md`](./PROGRESS.md); scope and 2026
+> benchmarks in [`REVIEW-PLAN.md`](./REVIEW-PLAN.md).
 
-**Repo:** WE3io/00-ULM · **Branch:** `claude/forked-project-review-9naqz7` · **Started:** 2026-06-10
+**Repo:** WE3io/00-ULM · **Branch:** `claude/forked-project-review-9naqz7` · **Date:** 2026-06-10
+
+**How to read this:** Executive summary first (decision-grade, non-technical). Part A is the
+**stack/architecture** read (~30%, architectural + due-diligence-by-exception). Part B is the
+**deep product analysis** (~70%) using a Double Diamond — Discover (JTBD) → Define (opportunity)
+→ Develop (evaluation) → Deliver (prioritised roadmap). Part C synthesises both into a call.
 
 ---
 
 ## Executive summary
 
-_Written last, once Parts A–C are verified. A founder/investor should be able to make a
-build / kill / pivot decision from this section alone._
+**Zero Zero is a well-built, unusually honest UK home-savings app that is aimed slightly off
+the job its market hires for, and has no way to make money yet. The recommendation is to
+pivot-to-focus, not kill.**
 
-> _TODO — synthesise after Parts A–C reach `verified`._
+**What it is.** A mobile-first, postcode-driven Next.js app that gives UK households localised
+advice to cut energy cost and carbon across 13 domains, powered by a cost-controlled AI +
+web-scraping pipeline with a deliberate "never show a fake number" honesty rule.
+
+**The stack (architectural read).** Coherent and honestly layered for a small team — a Next.js
+monolith plus an external cron ("Hermes"), with a clean agents → intelligence → calculators
+split and a genuinely well-designed multi-provider AI failover for low cost. The architectural
+debt is concentration (`AppContext` god-context; a 68-file `zone` module) and **operability**:
+state like rate-limits and AI cooldowns is in-memory per-lambda, and there is **no tracing,
+error capture, or funnel telemetry**. Dependencies are clean (0 vulns) and SSRF risk is low; the
+clear DD red flag is **almost no automated tests (~2 files for 55k LOC)** with `ignoreBuildErrors`
+on and Zod validation on only 1 of 50 routes.
+
+**The product (deeper read).** UK consumers prioritise **cutting cost over climate by ~6:1**, yet
+the product is architected **carbon-first** (a "carbon" journey, an "auditor" persona, £ shown
+co-equal with kg). It's also **inform-first** in a market where every viable competitor (Nous,
+Snugg, grant checkers, MSE) captures value at the point of **transaction** — so it has **no
+revenue model**. Its real, defensible whitespace is **trust + locality + breadth**: nobody else
+combines honest, postcode-grounded advice across all the levers, and the macro timing (£15bn Warm
+Homes Plan, price-cap volatility) is a strong tailwind.
+
+**The five moves that matter (in order):**
+1. **Instrument the funnel and add an eval that guards the honesty moat** — nothing else can be
+   proven or safely changed without this (also fixes durable rate-limiting + observability).
+2. **Re-point the frame from carbon to money** — £-first hero/copy; the single highest-confidence
+   change.
+3. **Show one "biggest win for you," fast** — replace breadth-overload with a prioritised next
+   action and a quicker time-to-value.
+4. **Add a path to action with revenue** — grants facilitation first, on the Warm Homes tailwind.
+5. **Pay down the test/maintainability debt** continuously.
+
+**Bottom line.** Real asset, real moat, favourable timing — held back by a carbon-first, inform-
+only stance and an unmeasured, lightly-tested operating base. **Pivot to a money-first, action-
+first, instrumented product and the foundation is strong enough to build on.**
+
+*(Detail and evidence: Part A — stack §A1–A5; Part B — product §B1–B4; synthesis §C. Working
+notes and citations in [`PROGRESS.md`](./PROGRESS.md).)*
 
 ---
 
@@ -294,7 +336,7 @@ The build quality is high and the craft is real. The issues below are almost all
 ### Where the product fights the job (heuristic + JTBD eval)
 | # | Finding | Evidence | Why it matters (vs the money job) |
 |---|---------|----------|-----------------------------------|
-| 1 | **Heavy question load before value.** 9 profile Qs, then up to **3×13 journey Qs** plus Solo-Focus *loop* takeovers ("rail instead of flying?"). | `lib/journeys.ts` (3/journey), `lib/zone/loopQuestions.ts:28-209` | Rivals deliver a number "in seconds" (Nous) / "60-second check" (grant tools). Front-loading profiling is an **activation tax** on a user who wants a fast £ answer. |
+| 1 | **Heavy question load before value.** 9 onboarding Qs, then a question surfaced per journey in Solo Focus (1 of a 3-per-journey bank) **plus** *loop*-takeover beats ("rail instead of flying?") — easily 20+ prompts to fully populate the board. | `app/profile/ProfilePageClient.tsx:39-96`, `lib/journeys.ts` (3/journey bank, 1 shown), `lib/zone/loopQuestions.ts:28-209` | Rivals deliver a number "in seconds" (Nous) / "60-second check" (grant tools). Front-loading profiling is an **activation tax** on a user who wants a fast £ answer. |
 | 2 | **Carbon is co-equal with money everywhere**, not subordinate. Hero shows £ **and** kg together; "carbon" is its own journey; several loop questions are carbon-led (plant-based meals, offsets). | Zone hero (£+kg stamps), `lib/journeys.ts` carbon journey, `loopQuestions.ts` | Re-states the **B1 6:1 money-vs-carbon mismatch** at the surface the user actually sees. The money "aha" is diluted. |
 | 3 | **13-lane wall (≤48 cells) + discovery tips + Rock rail = breadth over focus.** No single "biggest win for you." | `app/zone/page.tsx`, `lib/zone/gridOrder.ts` | Directly answers the wrong question. The user asks *"what do I do first?"*; the wall answers *"here are 13 areas."* For renters most lanes are inert. |
 | 4 | **Action is a link, not a transaction.** The Solo-Focus "BUY/CLAIM" opens an offer/source URL. | Solo-Focus action trinity (per UX walkthrough) | Confirms the **B2 transact/revenue gap** — value (and monetisation) leaks to gov.uk / installers at the exact moment of intent. |
@@ -315,17 +357,106 @@ assets; the honesty system is a genuine moat. The gap is strategic and consisten
 and instrument the funnel** so the re-pointing can be proven. These convert directly into B4.
 
 ## B4. Deliver — prioritise & sequence
-> _Framework: RICE prioritisation + sequenced roadmap._
-> _TODO_
+
+RICE = **(Reach × Impact × Confidence) ÷ Effort**. Reach is relative (1–10), Impact {0.25,
+0.5, 1, 2, 3}, Confidence {0.5, 0.8, 0.9}, Effort in person-weeks. Scores are indicative, for
+*ordering* not budgeting.
+
+| Bet (source) | R | I | C | E (wks) | RICE | 
+|--------------|---|---|---|---------|------|
+| **Re-point frame carbon → money** (B1/B2/B3-2): hero leads with £, carbon as support; goal/copy money-first | 10 | 2 | 0.9 | 2 | **9.0** |
+| **Instrument the funnel** (B3-7): activation, £-actioned, retention cohorts — the meta-enabler | 8 | 2 | 0.9 | 2 | **7.2** |
+| **Durable rate limiting** (A4): move in-memory limits → Neon/KV | 7 | 1 | 0.9 | 1 | **6.3** |
+| **Value-before-brand on first run** (B3-5): show the £ first, motion as reward | 10 | 1 | 0.6 | 1 | **6.0** |
+| **Surface one "biggest win for you"** (B2/B3-3) above the 13-lane wall | 10 | 2 | 0.8 | 3 | **5.3** |
+| **Cut time-to-value** (B3-1): postcode + 2–3 Qs → believable £ fast; profile progressively | 10 | 2 | 0.8 | 3 | **5.3** |
+| **Trust-moat eval in CI** (A5-1/B3-6): guard mechanical-truth + prose grounding | 8 | 2 | 0.9 | 3 | **4.8** |
+| **Observability/error+cost capture** (A4) | 8 | 1 | 0.8 | 2 | **3.2** |
+| **Smoke tests on critical paths** (A5-1): auth, /api/answers, zone VM | 8 | 2 | 0.8 | 6 | **2.1** |
+| **Path to action + revenue: grants facilitation** (B2/B3-4) — Warm Homes Plan tailwind | 6 | 3 | 0.6 | 8 | **1.35** |
+| **Zod validation pass** across routes (A5-2) | 7 | 0.5 | 0.9 | 3 | **1.05** |
+| **Decompose `lib/zone` + `AppContext`; drop `ignoreBuildErrors`; trim script sprawl** (A2/A5) | 5 | 1 | 0.7 | 8 | **0.44** |
+
+**Critical caveat — RICE measures efficiency, not necessity.** The **revenue/action bet scores
+low** (high effort, lower confidence) yet is **existential**: without a path to transaction there
+is no business model (B2). Treat it as a *must-sequence strategic bet*, not a backlog item RICE
+can defer away. Likewise the decomposition work is low-RICE but is the tax that keeps every other
+bet cheap over time.
+
+### Sequenced roadmap
+- **Phase 0 — Make bets provable & safe (weeks 1–3).** Funnel instrumentation; trust-moat eval;
+  durable rate limiting; basic error/cost observability. *Nothing below can be evaluated without
+  Phase 0.*
+- **Phase 1 — Re-point to the job (weeks 2–6, overlapping).** Money-first reframe; value-before-
+  brand on first run; surface the single biggest win; cut time-to-value via progressive profiling.
+  Measure activation lift against Phase 0 baseline.
+- **Phase 2 — Capture value (weeks 6–14).** Build one path to action on the highest-£ lever —
+  **grants facilitation** is the recommended first (tailwind + trust fit), establishing the
+  revenue model. A/B against inform-only.
+- **Phase 3 — Pay down foundation (continuous).** Smoke/integration test coverage; Zod pass;
+  decompose `lib/zone`/`AppContext`; remove `ignoreBuildErrors`; evaluate Turbopack + React 19;
+  rationalise the 61-script tooling layer.
 
 ---
 
 # Part C — Recommendations & roadmap
 
-> _Synthesised, sequenced. Strategic narrative tying stack + product together._
-> _TODO_
+### The one-sentence thesis
+Zero Zero is a **well-engineered, unusually honest product that is pointed slightly off the job
+its market actually hires for** — it audits *carbon-and-everything* when its users want to *cut
+their bills and be told the single next move* — and it has **no way to capture value** at the
+moment of action; close those two gaps and the genuine trust+locality moat becomes a business.
+
+### How stack and product connect
+The stack review and product review reinforce each other rather than compete:
+- The **honesty system** (mechanical truth, banned jargon, Zai's "i don't know") is simultaneously
+  the **product's moat** (B1) and the thing the **stack most under-protects** (no eval, no tests —
+  A5-1/B3-6). The highest-leverage technical work *is* the highest-leverage product work.
+- The **in-memory state + no observability** stack gaps (A4) are also the reason the **product
+  funnel is unmeasurable** (B3-7). One fix — instrument and persist — unblocks both.
+- The **`lib/zone` complexity hotspot** (A2) is where the **product's over-breadth** (13 lanes,
+  B3-3) physically lives; focusing the product also shrinks the riskiest module.
+
+### What to do (in order)
+1. **Instrument & protect first (Phase 0).** You cannot prove any change without funnel telemetry,
+   and you cannot risk the reframe without an eval guarding the trust moat. Add durable rate
+   limiting and basic error/cost capture in the same pass.
+2. **Re-point to money, and to a single next action (Phase 1).** £-first hero, value-before-brand
+   first run, one "biggest win for you," and a fast time-to-value via progressive profiling.
+3. **Earn revenue at the point of action (Phase 2).** Grants facilitation first, riding the
+   £15bn Warm Homes Plan tailwind; this creates the missing business model.
+4. **Pay down foundation continuously (Phase 3).** Tests, Zod, decomposition, drop
+   `ignoreBuildErrors`, Turbopack/React 19, tooling cleanup.
+
+### Build / kill / pivot call
+**Pivot-to-focus, don't kill.** The asset (honest, postcode-grounded, broad, well-built) is real
+and the macro timing (Warm Homes Plan, price-cap volatility) is favourable. The required change
+is a **strategic re-pointing** (money-first, action-first, with a revenue path), not a rebuild.
+The main risks are (a) the team's strong "Director's Order" attachment to the carbon-auditor frame
+and the frozen motion sequence, which this evidence suggests is the thing to revisit, and (b)
+executing a transaction/revenue motion the product has not yet attempted.
 
 ---
 
-## Appendix — evidence log & sources
-> _Running list mirrored from PROGRESS.md on finalisation._
+## Appendix — evidence & sources
+
+**Code evidence (file:line)** is cited inline throughout Parts A–B. Key anchors: architecture
+`app/layout.tsx:126`, `app/context/AppContext.tsx`, `lib/db.ts:27-33`,
+`lib/intelligence/bucketFailover.ts:232-303`, `lib/intelligence/aiGateway.ts:125-147`,
+`app/api/cron/zone-research/route.ts`; product `app/profile/ProfilePageClient.tsx:39-96`,
+`lib/journeys.ts`, `lib/zone/loopQuestions.ts:28-209`, `lib/zone/mechanicalTruth.ts:44`,
+`lib/zone/warmAuditorCopy.ts:10-21`, `lib/brains/zai/boundaries.ts`, `app/api/analytics/route.ts`;
+DD `next.config.js:9`, `package.json:91`, `npm audit --omit=dev` (0 vulns).
+
+**External sources (2026)**
+- Market / job: [House of Commons Library — electricity bill make-up](https://commonslibrary.parliament.uk/research-briefings/cbp-10505/) ·
+  [JRF — addressing the 2026 energy price crisis](https://www.jrf.org.uk/cost-of-living/addressing-the-2026-energy-price-crisis) ·
+  [Solar4Good — average UK energy bills 2026](https://solar4good.co.uk/blogs/average-energy-bills-uk-2026/)
+- Competitors / tailwind: [Nous AI bills assistant](https://www.nous.co/blog/nous-launches-new-ai-assistant-to-make-sense-of-household-bills) ·
+  [Snugg](https://www.snugg.com/) · [GB Energy grant checker](https://greatbritishenergy.com/eligibility-checker/) ·
+  [MSE — grants](https://www.moneysavingexpert.com/family/housing-and-energy-grants/) ·
+  [MSE — Warm Homes Plan (Jan 2026)](https://www.moneysavingexpert.com/news/2026/01/warm-homes-plan-martin/)
+- Benchmarks (full list in `REVIEW-PLAN.md`): [Next.js 16](https://nextjs.org/blog/next-16) ·
+  [LLM/agent evaluation 2026 (Adaline)](https://www.adaline.ai/blog/complete-guide-llm-ai-agent-evaluation-2026) ·
+  [Technical due-diligence 2026](https://www.cleveroad.com/blog/technical-due-diligence/) ·
+  [Core Web Vitals + WCAG (Siteimprove)](https://www.siteimprove.com/blog/core-web-vitals-wcag/)
